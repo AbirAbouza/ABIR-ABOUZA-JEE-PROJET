@@ -1,0 +1,55 @@
+
+ <div class="container mt-5">
+
+   <form class="row g-6" [formGroup]="customerFormGroup"  (ngSubmit)="saveCustomer()">
+     <h3><b>Add Customer </b> </h3>
+     <hr>
+     <div class="col-auto">
+
+       <input type="text" class="form-control" id="inputPassword2" placeholder="Customer Name" formControlName="name">
+     </div>
+     <div class="col-auto">
+
+       <input type="text" class="form-control" id="inputPassword2" placeholder="Customer Email" formControlName="email">
+     </div>
+
+     <div class="col-auto">
+
+       <button type="submit" class="btn btn-success mb-3"> <b>Add Customer</b></button>
+     </div>
+   </form>
+   <br>
+
+   <h3><b>List Of All Customer </b> </h3>
+   <hr>
+   <br>
+ <div class="container">
+   <table class="table  p-3 mb-5 bg-body rounded" *ngIf="customers">
+     <thead>
+       <tr class="bg-dark text-white ">
+         <th>ID</th>
+         <th>Name</th>
+         <th>Email</th>
+         <th>Actions</th>
+         <th></th>
+         <th></th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr *ngFor="let c of customers._embedded.customers">
+         <td style="color: grey;">CUSTUMER/{{c.id}}</td>
+         <td style="color: #fd6c9e;"><b>{{c.name}}</b></td>
+         <td>{{c.email}}</td>
+         <td>
+          <button  class="btn btn-outline-success" (click)="getBills(c)"><b>SHOW BILLS</b></button>
+
+         </td>
+         <td>
+          <button  class="btn btn-outline-danger" (click)="deleteCustomer(c.id)"><b>DELETE</b></button>
+
+         </td>
+
+       </tr>
+     </tbody>
+   </table>
+ </div>

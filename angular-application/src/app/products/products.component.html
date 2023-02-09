@@ -1,0 +1,71 @@
+
+<div class="container mt-5">
+
+  <form class="row g-6" [formGroup]="productFormGroup"  (ngSubmit)="saveProduct()">
+    <h3><b>Add Product </b> </h3>
+    <hr>
+    <div class="col-auto">
+
+      <input type="text" class="form-control" id="name" name="name" placeholder="Product Name" formControlName="name" >
+    </div>
+    <div class="col-auto">
+
+      <input type="text" class="form-control" id="price" name="price" placeholder="Product Price" formControlName="price" >
+    </div>
+    <div class="col-auto">
+
+      <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Product Quantity" formControlName="quantity" >
+    </div>
+    <div class="col-auto">
+
+      <button type="submit" class="btn btn-primary mb-3"> <b> Add Product</b></button>
+    </div>
+  </form>
+  <br>
+
+
+  <br>
+
+  <h3><b>List Of All Products </b> </h3>
+  <hr>
+
+    <div >
+      <table class="table p-3 mb-5 bg-body rounded" *ngIf="products">
+        <thead>
+          <tr class="bg-dark text-white ">
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Actions</th>
+            <!-- <th></th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of products._embedded.products">
+            <td style="color: grey;">PRODUCT/{{p.id}}</td>
+            <td><b style="color: #fd6c9e;">{{p.name}}</b></td>
+            <td><b style="color: green;">{{p.price}}</b></td>
+            <td><b> {{p.quantity}}</b></td>
+
+            <!-- <td>
+              <a type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="updateProduct(p.id)"><b style="color: orange;" >
+                <img src="https://img.icons8.com/fluency/2x/hand-with-pen.png" width="20px" alt=""> Edit</b></a>
+
+            </td> -->
+
+            <td>
+              <a type="submit" (click)="deleteProduct(p.id)"><b style="color: red;">DELETE</b></a>
+          </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+
+</div>
+
+
+
